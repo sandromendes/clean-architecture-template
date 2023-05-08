@@ -1,0 +1,14 @@
+﻿using Domain.Common.Interface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Domain.Common
+{
+    public class IdentityEntity : IIdentityEntity
+    {
+        public Guid Id { get; set; }
+    }
+}

@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  clean_architecture_api:
+    image: ${DOCKER_REGISTRY-}clean_architecture_api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development 
+      - "ConnectionStrings__ApplicationDbConnection=User ID=postgres;Password=postgres;Host=stackup_postgres;Port=5432;Database=clean_architecture_template_db;Pooling=true;"
+    ports:
+      - "5290:80"
+      - "7002:443"
+    depends_on:
+      - stackup_postgres
+
+  stackup_postgres:
+    image: postgres
+    container_name: stackup_postgres
+    restart: always
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: clean_architecture_template_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - stackup_postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4:6.17
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8009:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  stackup_postgres_data:
+  pgadmin-data:
