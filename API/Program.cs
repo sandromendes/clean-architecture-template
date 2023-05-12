@@ -18,10 +18,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureInfrastructure(builder.Configuration);
 builder.Services.ConfigureApplication(builder.Configuration);
 
+//contexts
 builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+
+//repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 using (var scope = app.Services.CreateScope())
 {

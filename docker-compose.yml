@@ -2,6 +2,7 @@ version: '3.8'
 services:
   clean_architecture_api:
     image: ${DOCKER_REGISTRY-}clean_architecture_api
+    container_name: application_container
     build:
       context: .
       dockerfile: API/Dockerfile
@@ -16,7 +17,7 @@ services:
 
   stackup_postgres:
     image: postgres
-    container_name: stackup_postgres
+    container_name: stackup_postgres_container
     restart: always
     environment:
       POSTGRES_USERNAME: postgres

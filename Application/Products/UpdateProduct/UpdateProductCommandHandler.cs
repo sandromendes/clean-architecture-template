@@ -24,8 +24,10 @@ namespace Application.Products.UpdateProduct
             if (!string.IsNullOrEmpty(request.Code)) productDb.Code = request.Code;
             if (!string.IsNullOrEmpty(request.Name)) productDb.Name = request.Name;
             if (!string.IsNullOrEmpty(request.Description)) productDb.Description = request.Description;
+            if (!Equals(request.CategoryId, productDb.CategoryId)) productDb.CategoryId = request.CategoryId;
 
             productDb.Price = request.Price;
+            productDb.UpdatedDate = DateTime.Now;
 
             await _repository.UpdateAsync(productDb);
 

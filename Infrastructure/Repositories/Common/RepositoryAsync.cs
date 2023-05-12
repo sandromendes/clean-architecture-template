@@ -1,14 +1,7 @@
 ﻿using Application.Context;
 using Domain.Common.Interface;
 using Domain.Repositories.Common;
-using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Common
 {

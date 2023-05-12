@@ -20,6 +20,11 @@ namespace Application.Products.CreateProduct
         {
             var newProduct = _mapper.Map<Product>(request);
             
+            newProduct.CreatedDate = DateTime.Now;
+            newProduct.UpdatedDate = DateTime.Now;
+            newProduct.IsActive = true;
+
+
             var productDb = await _repository.AddAsync(newProduct);
 
             var productDto = _mapper.Map<ProductDto>(productDb);
